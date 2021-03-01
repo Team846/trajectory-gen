@@ -23,20 +23,27 @@ class VisualizeTrajectory( MovingCameraScene):
         t = 0
         x = 5
         y = 3.2
+        start_angle = 0
         for c in parser.commands:
             dt = c.t - t
             dx = c.x - x
             dy = c.y - y
             path = Line([x,y,0], [c.x, c.y, 0])
+            
+            
+            if(dx!=0):
+                self.play(Rotate(robot, angle=atan(dy/dx)-start_angle, run_time = 1))
             t = c.t
             x = c.x
             y = c.y
-            print([x,y,0])
-            print([x+dx, y+dy, 0])
+            # print([x,y,0])
+            # print([x+dx, y+dy, 0])
             self.add(Dot(point=[x,y,0]))
-            print(atan((path.end[0] - path.start[0])/(path.end[1]-path.start[1])))
-            # path = Line([x,y,0], [x+dx, y+dy, 0])
             self.play(MoveAlongPath(robot, path))
-            self.play(Rotating(robot, radians=atan((path.end[0] - path.start[0])/(path.end[1]-path.start[1])), run_time = 1))
+            if(dx != 0):
+                start_angle = atan(dy/dx)
+            else:
+                start_angle = 0
+
 
             # self.wait(dt)
