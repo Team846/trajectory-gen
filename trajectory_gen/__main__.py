@@ -6,9 +6,9 @@ from matplotlib.collections import LineCollection
 from .search import find_optimal_trajectory
 from . import Line, Waypoint
 
-MAX_V = 15.86 * 12  # 15.86 ft/s
+MAX_V = 18.26843042 * 12  # 15.86 ft/s
 MAX_OMEGA = MAX_V / (2.13 * 12) / 2 / math.pi * 180 # 2.13 ft track length
-MAX_A = 14 * 12  # 14 ft/s^2
+MAX_A = 16.89347204 * 12  # 14 ft/s^2
 
 
 def main():

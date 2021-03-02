@@ -1,0 +1,8 @@
+MARKER x y // Visual marker for reference
+WAYPOINT x y // A waypoint on the path
+
+TARGET t x y // A new extrapolated target
+WAYPOINT_HIT t x y // Mark a waypoint as passed
+
+POSITION t x y bearing // A new robot position update
+VELOCITY t v_l v_r // A new robot velocity update
