@@ -59,7 +59,7 @@ class VisualizeTrajectory(MovingCameraScene):
         line_half = 5
         self.camera_frame.set_width(50)
         self.camera_frame.set_height(50)
-        parser = Parser("slalom.txt")
+        parser = Parser("truncated.txt")
     
         # corner_bot = Square()
         # corner_bot.move_to(5*RIGHT + 3*UP)
@@ -113,7 +113,8 @@ class VisualizeTrajectory(MovingCameraScene):
             elif(type(c) is WaypointHitCommand):
                 dot = Dot(color=RED, point=[c.x, c.y, 0])
                 dot_2 = Dot(color=GREEN, point=[c.x, c.y, 0])
-                robot_movements.append(ReplacementTransform(dot,dot_2, run_time = c.t - t))
+                target_vec = Arrow([c.x, c.y, 0], [c.new_target_x, c.new_target_y, 0], color=BLUE)
+                robot_movements.append(Succession(ReplacementTransform(dot,VGroup(dot_2, target_vec), run_time = c.t - t), FadeOut(target_vec), lag_time=0.1))
                 
             # elif(type(c) is TargetCommand):
             #     robot_movements.append(FadeOut(Arrow([x,y,0], [c.x, c.y, 0])))

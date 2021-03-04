@@ -15,10 +15,10 @@ class MarkerCommand:
 class WaypointCommand:
     def __init__(self, line: List[Any]):
         if line[0] != "WAYPOINT":
-            raise ValueError()
-
-        self.x = float(line[1])
-        self.y = float(line[2])
+            raise ValueError() 
+        self.t = float(line[1])
+        self.x = float(line[2])
+        self.y = float(line[3])
 
 
 class TargetCommand:
@@ -39,6 +39,8 @@ class WaypointHitCommand:
         self.t = float(line[1])
         self.x = float(line[2])
         self.y = float(line[3])
+        self.new_target_x = float(line[4])
+        self.new_target_y = float(line[5])
 
 
 class PositionCommand:
